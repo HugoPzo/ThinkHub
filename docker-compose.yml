@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: thinkhub-mysql
+    ports:
+      - "3307:3306"  # Puerto externo 3307 -> interno 3306 del contenedor
+    environment:
+      MYSQL_DATABASE: thinkhub
+      MYSQL_ROOT_PASSWORD: 12345
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - thinkhub-net
+
+volumes:
+  mysql_data:
+
+networks:
+  thinkhub-net:
