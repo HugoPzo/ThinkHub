@@ -1,75 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Blog Central</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-</head>
-<body class="bg-gray-50 text-gray-800">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body th:replace="layout :: body">
 
-<!-- Navbar -->
-<header class="bg-white shadow-md">
-  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-    <h1 class="text-2xl font-bold text-indigo-600">Blog Central</h1>
-    <nav class="space-x-4">
-      <a href="#" class="text-gray-700 hover:text-indigo-600">Inicio</a>
-      <a href="#" class="text-gray-700 hover:text-indigo-600">Mi Perfil</a>
-      <a href="#" class="text-gray-700 hover:text-indigo-600">Cerrar sesión</a>
-    </nav>
-  </div>
-</header>
+<header th:replace="layout :: header"></header>
 
-<!-- Hero -->
-<section class="bg-indigo-600 text-white py-20">
-  <div class="max-w-3xl mx-auto text-center px-4">
-    <h2 class="text-4xl font-bold mb-4">Comparte tu historia con el mundo</h2>
-    <p class="text-lg mb-6">Crea, publica y descubre nuevos blogs todos los días.</p>
-    <a href="#upload" class="inline-block bg-white text-indigo-600 font-semibold px-6 py-3 rounded-full shadow hover:bg-gray-100 transition">
-      Publicar mi blog
-    </a>
-  </div>
-</section>
+<div th:fragment="content">
+  <!-- Lista de Blogs del Usuario -->
+  <section class="py-16 px-4 max-w-7xl mx-auto">
+    <h3 class="text-2xl font-bold mb-8 text-center">Mis Blogs</h3>
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
 
-<!-- Últimos blogs -->
-<section class="py-16 px-4 max-w-7xl mx-auto">
-  <h3 class="text-2xl font-bold mb-8 text-center">Últimos blogs publicados</h3>
-  <div class="grid md:grid-cols-3 gap-8">
-    <!-- Blog Card -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-      <div class="p-6">
-        <h4 class="text-xl font-semibold mb-2">Cómo empecé a programar</h4>
-        <p class="text-gray-600 mb-4">Una historia personal sobre los primeros pasos en el mundo del desarrollo...</p>
-        <a href="#" class="text-indigo-600 font-medium hover:underline">Leer más →</a>
+      <!-- Blog Card -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition relative">
+        <div class="p-6">
+          <h4 class="text-xl font-semibold mb-2">Cómo empecé a programar</h4>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Una historia personal sobre los primeros pasos en el mundo del desarrollo...</p>
+        </div>
+        <button class="absolute top-4 right-4 text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300" title="Editar">
+          <i data-feather="edit-3"></i>
+        </button>
       </div>
-    </div>
 
-    <!-- Blog Card -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-      <div class="p-6">
-        <h4 class="text-xl font-semibold mb-2">Tips para mantenerte productivo</h4>
-        <p class="text-gray-600 mb-4">Descubre estrategias que te ayudarán a mantenerte enfocado durante el día...</p>
-        <a href="#" class="text-indigo-600 font-medium hover:underline">Leer más →</a>
+      <!-- Blog Card -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition relative">
+        <div class="p-6">
+          <h4 class="text-xl font-semibold mb-2">Tips para mantenerte productivo</h4>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Descubre estrategias que te ayudarán a mantenerte enfocado durante el día...</p>
+        </div>
+        <button class="absolute top-4 right-4 text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300" title="Editar">
+          <i data-feather="edit-3"></i>
+        </button>
       </div>
-    </div>
 
-    <!-- Blog Card -->
-    <div class="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition">
-      <div class="p-6">
-        <h4 class="text-xl font-semibold mb-2">Viajar y trabajar al mismo tiempo</h4>
-        <p class="text-gray-600 mb-4">Te cuento cómo combino mi trabajo remoto con mi pasión por los viajes...</p>
-        <a href="#" class="text-indigo-600 font-medium hover:underline">Leer más →</a>
+      <!-- Blog Card -->
+      <div class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition relative">
+        <div class="p-6">
+          <h4 class="text-xl font-semibold mb-2">Viajar y trabajar al mismo tiempo</h4>
+          <p class="text-gray-600 dark:text-gray-300 mb-4">Te cuento cómo combino mi trabajo remoto con mi pasión por los viajes...</p>
+        </div>
+        <button class="absolute top-4 right-4 text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300" title="Editar">
+          <i data-feather="edit-3"></i>
+        </button>
       </div>
-    </div>
-  </div>
-</section>
 
-<!-- Footer -->
-<footer class="bg-white border-t mt-16">
-  <div class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-500 text-sm">
-    © 2025 Blog Central. Todos los derechos reservados.
-  </div>
-</footer>
+    </div>
+  </section>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+<div th:replace="layout :: scripts"></div>
 
 </body>
 </html>

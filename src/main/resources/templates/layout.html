@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es" class="" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title th:text="${pageTitle} ?: 'ThinkHub'">ThinkHub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+<!-- Body -->
+<body th:fragment="body" class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
+
+<!-- Navbar -->
+<header th:fragment="header" class="bg-white dark:bg-gray-800 shadow-md">
+  <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">ThinkHub</h1>
+    <nav class="space-x-4 flex items-center">
+      <a href="#" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Crear Blog</a>
+      <a href="#" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Cerrar sesión</a>
+      <button id="toggle-dark" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400" title="Modo oscuro">
+        <i data-feather="moon"></i>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- Contenido principal -->
+<main>
+  <!-- Este fragmento será reemplazado en las vistas hijas -->
+  <div th:replace="~{::content}"></div>
+</main>
+
+<!-- Footer -->
+<footer th:fragment="footer" class="bg-white dark:bg-gray-800 border-t dark:border-gray-700 mt-16">
+  <div class="max-w-7xl mx-auto px-4 py-6 text-center text-gray-500 dark:text-gray-400 text-sm">
+    © 2025 ThinkHub. Todos los derechos reservados.
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script th:fragment="scripts">
+    tailwind.config = {
+    darkMode: 'class'
+  };
+    feather.replace();
+    const toggleBtn = document.getElementById('toggle-dark');
+    toggleBtn?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+  });
+</script>
+
+</body>
+</html>
