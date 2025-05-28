@@ -4,6 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title th:text="${pageTitle} ?: 'ThinkHub'">ThinkHub</title>
+  <script>
+    const theme = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    if (theme === 'dark' || (!theme && prefersDark)) {
+      document.documentElement.classList.add('dark');
+    }
+  </script>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/feather-icons"></script>
 </head>
@@ -40,15 +47,31 @@
 
 <!-- Scripts -->
 <script th:fragment="scripts">
-    tailwind.config = {
+  tailwind.config = {
     darkMode: 'class'
   };
-    feather.replace();
-    const toggleBtn = document.getElementById('toggle-dark');
-    toggleBtn?.addEventListener('click', () => {
+
+  feather.replace();
+
+  // Aplicar el tema guardado
+  const userTheme = localStorage.getItem('theme');
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+  if (userTheme === 'dark' || (!userTheme && systemPrefersDark)) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+
+  // Botón para cambiar tema
+  const toggleBtn = document.getElementById('toggle-dark');
+  toggleBtn?.addEventListener('click', () => {
     document.documentElement.classList.toggle('dark');
+    const isDark = document.documentElement.classList.contains('dark');
+    localStorage.setItem('theme', isDark ? 'dark' : 'light');
   });
 </script>
+
 
 </body>
 </html>

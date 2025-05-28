@@ -13,6 +13,12 @@
 
       <!-- Iterar los posts -->
       <div th:each="post : ${posts}" class="bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden hover:shadow-lg transition relative">
+
+        <!-- Imagen del post -->
+        <div th:if="${post.image != null}" class="h-48 w-full overflow-hidden">
+          <img th:src="@{${post.image}}" alt="Imagen del post" class="object-cover w-full h-full" />
+        </div>
+
         <div class="p-6">
           <h4 class="text-xl font-semibold mb-1" th:text="${#strings.abbreviate(post.text, 40)}">Título del Post</h4>
           <p class="text-gray-600 dark:text-gray-300 text-sm mb-3">
@@ -20,11 +26,12 @@
           </p>
           <p class="text-gray-600 dark:text-gray-300" th:text="${#strings.abbreviate(post.text, 100)}">Resumen del contenido...</p>
         </div>
+
         <a th:href="@{'/post/' + ${post.id}}" class="absolute top-4 right-4 text-indigo-600 dark:text-indigo-400 hover:text-indigo-800 dark:hover:text-indigo-300" title="Editar">
           <i data-feather="edit-3"></i>
         </a>
       </div>
-
+      
     </div>
   </section>
 </div>
