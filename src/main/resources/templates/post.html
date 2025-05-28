@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body th:replace="layout :: body">
+
+<header th:replace="layout :: header"></header>
+
+<div th:fragment="content">
+    <section class="py-16 px-4 max-w-3xl mx-auto">
+        <article class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
+            <h1 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-4" th:text="${#strings.abbreviate(post.text, 40)}">Título del Post</h1>
+
+            <!-- Imagen (opcional) -->
+            <div th:if="${post.image != null}" class="mb-6">
+                <img th:src="${post.image}" alt="Imagen del post" class="rounded-lg w-full max-h-96 object-cover" />
+            </div>
+
+            <!-- Contenido -->
+            <p class="text-gray-700 dark:text-gray-300 whitespace-pre-line mb-6" th:text="${post.text}">Contenido del post...</p>
+
+            <!-- Fecha -->
+            <p class="text-sm text-gray-500 dark:text-gray-400 mb-6">
+                Publicado el <span th:text="${#temporals.format(post.createdAt, 'dd/MM/yyyy HH:mm')}">fecha</span>
+            </p>
+
+            <!-- Botones -->
+            <div class="flex justify-end gap-4">
+                <a th:href="@{'/edit_post/' + ${post.id}}"
+                   class="inline-flex items-center px-4 py-2 bg-indigo-500 text-white rounded-lg hover:bg-indigo-600 transition">
+                    <i data-feather="edit-3" class="mr-2"></i> Editar
+                </a>
+
+                <form th:action="@{'/delete_post/' + ${post.id}}" method="post"
+                      onsubmit="return confirm('¿Estás seguro de que deseas eliminar este post?')">
+                    <input type="hidden" name="_method" value="delete" /> <!-- Para simulación DELETE -->
+                    <button type="submit" class="inline-flex items-center px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition">
+                        <i data-feather="trash-2" class="mr-2"></i> Eliminar
+                    </button>
+                </form>
+            </div>
+        </article>
+    </section>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+<div th:replace="layout :: scripts"></div>
+
+</body>
+</html>

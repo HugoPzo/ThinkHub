@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body th:replace="layout :: body">
+
+<header th:replace="layout :: header"></header>
+
+<!-- Contenido -->
+<div th:fragment="content">
+    <div class="max-w-3xl mx-auto px-4 py-8">
+        <h3 class="text-2xl font-bold mb-6 text-indigo-600 dark:text-indigo-400">Crear nuevo post</h3>
+
+        <form th:action="@{/save_post}" th:object="${post}" method="post" enctype="multipart/form-data" class="space-y-6 bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md">
+
+            <!-- Texto del post -->
+            <div>
+                <label for="text" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Contenido</label>
+                <textarea id="text" th:field="*{text}" rows="5"
+                          class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-900 dark:text-white p-2"
+                          placeholder="¿En qué estás pensando?"></textarea>
+            </div>
+
+            <!-- Imagen -->
+            <div>
+                <label for="image" class="block text-sm font-medium text-gray-700 dark:text-gray-300">URL de imagen (opcional)</label>
+                <input type="text" id="image" th:field="*{image}"
+                       class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-900 dark:text-white p-2"
+                       placeholder="https://ejemplo.com/imagen.jpg" />
+            </div>
+
+            <!-- Botón de enviar -->
+            <div class="text-right">
+                <button type="submit"
+                        class="inline-flex items-center px-6 py-2 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold rounded-2xl shadow-md transition duration-300">
+                    Publicar
+                </button>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<footer th:replace="layout :: footer"></footer>
+<div th:replace="layout :: scripts"></div>
+
+</body>
+</html>
