@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body th:replace="layout :: body">
+
+<header th:replace="layout :: header"></header>
+
+<div th:fragment="content">
+    <main style="text-align: center; padding: 2rem;">
+        <h2 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">😢 Ocurrió un error</h2>
+        <p class="text-gray-700 dark:text-gray-300 mb-6" th:text="${mensaje}">Ha ocurrido un error inesperado.</p>
+
+        <a th:href="@{/}"
+           class="inline-block mt-4 px-6 py-2 bg-indigo-600 text-white rounded-2xl shadow-md hover:bg-indigo-700 transition duration-300">
+            Volver al inicio
+        </a>
+    </main>
+</div>
+<footer th:replace="layout :: footer"></footer>
+<div th:replace="layout :: scripts"></div>
+</body>
+</html>

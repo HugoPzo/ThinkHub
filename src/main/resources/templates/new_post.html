@@ -18,6 +18,9 @@
                 <textarea id="text" th:field="*{text}" rows="5"
                           class="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm focus:ring-indigo-500 focus:border-indigo-500 dark:bg-gray-900 dark:text-white p-2"
                           placeholder="¿En qué estás pensando?"></textarea>
+                <div th:if="${#fields.hasErrors('text')}" class="text-red-500 text-sm mt-1">
+                    <p th:errors="*{text}">El contenido no puede estar vacío</p>
+                </div>
             </div>
 
             <!-- Imagen -->

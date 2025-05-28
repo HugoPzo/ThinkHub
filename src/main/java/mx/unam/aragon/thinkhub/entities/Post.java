@@ -1,6 +1,8 @@
 package mx.unam.aragon.thinkhub.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +15,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "El contenido no puede estar vacío")
     @Column(nullable = false, columnDefinition = "TEXT")
     private String text;
 

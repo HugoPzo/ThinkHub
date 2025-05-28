@@ -10,8 +10,9 @@
         <article class="bg-white dark:bg-gray-800 rounded-xl shadow-md p-8">
             <h1 class="text-3xl font-bold text-indigo-600 dark:text-indigo-400 mb-4" th:text="${#strings.abbreviate(post.text, 40)}">Título del Post</h1>
 
+
             <!-- Imagen (opcional) -->
-            <div th:if="${post.image != null}" class="mb-6">
+            <div th:if="${post.image != null and !post.image.isEmpty()}" class="mb-6">
                 <img th:src="${post.image}" alt="Imagen del post" class="rounded-lg w-full max-h-96 object-cover" />
             </div>
 

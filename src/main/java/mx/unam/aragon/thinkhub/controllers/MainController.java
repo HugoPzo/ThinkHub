@@ -7,8 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import jakarta.validation.Valid;
+import org.springframework.validation.BindingResult;
 
 import java.time.LocalDateTime;
+
 
 @Controller
 @RequestMapping
@@ -41,14 +44,22 @@ public class MainController {
 
     // POST - POST
     @PostMapping("/save_post")
-    public String savePost(
-         @ModelAttribute Post post
-    ) {
-        // Bitacora
-        LoggerFactory.getLogger(getClass()).info("Post saved");
-        // DB sending
+    public String savePost(@Valid @ModelAttribute("post") Post post,
+                           BindingResult result,
+                           Model model) {
+        if (result.hasErrors()) {
+            return "new_post"; // vuelve a mostrar el formulario con errores
+        }
+
+        // Limpiar campo image si está vacío o solo tiene espacios
+        if (post.getImage() != null && post.getImage().trim().isEmpty()) {
+            post.setImage(null);
+        }
+
+        LoggerFactory.getLogger(getClass()).info("Post guardado correctamente");
         postService.savePost(post);
         return "redirect:/posts";
+
     }
 
     // POST - GET ID
@@ -75,14 +86,28 @@ public class MainController {
 
     // POST - UPDATE POST
     @PostMapping("/update_post")
-    public String updatePost(@ModelAttribute Post post) {
+    public String updatePost(@Valid @ModelAttribute("post") Post post,
+                             BindingResult result,
+                             Model model) {
+        if (result.hasErrors()) {
+            return "edit_post"; // vuelve a mostrar el formulario con errores
+        }
+
         Post existingPost = postService.getPostById(post.getId());
         if (existingPost != null) {
             existingPost.setText(post.getText());
-            existingPost.setImage(post.getImage());
+
+            // Limpiar campo image si está vacío o solo tiene espacios
+            if (post.getImage() != null && post.getImage().trim().isEmpty()) {
+                existingPost.setImage(null);
+            } else {
+                existingPost.setImage(post.getImage());
+            }
+
             existingPost.setUpdatedAt(LocalDateTime.now());
             postService.savePost(existingPost);
         }
+
         return "redirect:/posts";
     }
 
