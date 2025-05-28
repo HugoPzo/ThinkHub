@@ -22,9 +22,20 @@
   <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
     <a th:href="@{/}"><h1 class="text-2xl font-bold text-indigo-600 dark:text-indigo-400">ThinkHub</h1></a>
     <nav class="space-x-4 flex items-center">
-      <a th:href="@{/posts}" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Posts</a>
-      <a th:href="@{/new_post}" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Crear Blog</a>
-      <a href="#" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Cerrar sesión</a>
+      <span th:if="${session.user != null}">
+        <a th:href="@{/posts}" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Posts  </a>
+
+        <a th:href="@{/new_post}" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">Crear Blog</a>
+      </span>
+      <span th:if="${session.user != null}">
+        <span class="text-gray-700 dark:text-gray-200">Hola, <span th:text="${session.user.name}">Usuario</span></span>
+      </span>
+      <a th:if="${session.user == null}" th:href="@{/login}" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">
+        Iniciar sesión
+      </a>
+      <a th:if="${session.user != null}" th:href="@{/logout}" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400">
+        Cerrar sesión
+      </a>
       <button id="toggle-dark" class="text-gray-700 dark:text-gray-200 hover:text-indigo-600 dark:hover:text-indigo-400" title="Modo oscuro">
         <i data-feather="moon"></i>
       </button>
