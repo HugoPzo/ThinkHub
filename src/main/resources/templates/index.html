@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+<body th:replace="layout :: body">
+
+<header th:replace="layout :: header"></header>
+
+<div th:fragment="content">
+    <section class="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-100 transition-colors duration-300 px-4 py-16">
+        <div class="max-w-7xl w-full text-center space-y-20">
+
+            <!-- Bienvenida -->
+            <div class="space-y-6">
+                <h1 class="text-5xl md:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight">
+                    ¡Bienvenido a <span class="text-indigo-600 dark:text-indigo-400">ThinkHub</span>!
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto leading-relaxed">
+                    Un lugar donde las ideas cobran vida, las conversaciones fluyen, y cada usuario puede dejar su huella.
+                </p>
+                <p class="text-md text-gray-600 dark:text-gray-400 font-medium max-w-3xl mx-auto">
+                    ThinkHub es una red social pensada para compartir pensamientos, experiencias, reflexiones y debatir con respeto y entusiasmo.
+                </p>
+            </div>
+
+            <!-- Funcionalidades -->
+            <div class="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center max-w-6xl mx-auto">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                    <i data-feather="edit-3" class="text-indigo-600 dark:text-indigo-400 w-8 h-8 mb-4 mx-auto"></i>
+                    <h3 class="text-xl font-semibold mb-2">Crea y publica</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        Comparte tus ideas con el mundo en publicaciones que inspiran y conectan.
+                    </p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                    <i data-feather="message-circle" class="text-indigo-600 dark:text-indigo-400 w-8 h-8 mb-4 mx-auto"></i>
+                    <h3 class="text-xl font-semibold mb-2">Intercambia ideas</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        Comenta publicaciones y forma parte de conversaciones enriquecedoras.
+                    </p>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-1">
+                    <i data-feather="users" class="text-indigo-600 dark:text-indigo-400 w-8 h-8 mb-4 mx-auto"></i>
+                    <h3 class="text-xl font-semibold mb-2">Conecta con otros</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+                        Encuentra personas con intereses comunes y construye tu comunidad.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Ejemplo de publicación -->
+            <div class="max-w-3xl mx-auto space-y-6 text-left">
+                <h2 class="text-2xl font-bold text-center">Ejemplo de publicación</h2>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-md transition space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+                        <div>
+                            <p class="text-lg font-semibold text-gray-900 dark:text-white">EjemploUsuario</p>
+                            <p class="text-sm text-gray-500 dark:text-gray-400">Hace unos minutos</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Hoy redescubrí mi pasión por escribir. Nada se compara con dejar fluir tus pensamientos en palabras.
+                        ¿Qué los inspira a ustedes a crear?
+                    </p>
+                    <div class="border-t border-gray-200 dark:border-gray-700 pt-4">
+                        <p class="text-sm font-semibold text-gray-600 dark:text-gray-400 mb-2">Comentarios</p>
+                        <div class="space-y-3">
+                            <div class="flex gap-3">
+                                <div class="w-8 h-8 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+                                <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded-xl w-full text-sm text-gray-800 dark:text-gray-200">
+                                    <span class="font-semibold">Clara:</span> Me pasa igual, escribir me conecta conmigo misma ✨
+                                </div>
+                            </div>
+                            <div class="flex gap-3">
+                                <div class="w-8 h-8 bg-gray-300 dark:bg-gray-700 rounded-full"></div>
+                                <div class="bg-gray-100 dark:bg-gray-700 p-3 rounded-xl w-full text-sm text-gray-800 dark:text-gray-200">
+                                    <span class="font-semibold">Luis:</span> La música y la lectura siempre despiertan algo en mí 🎧📚
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Llamado a la acción -->
+            <div class="text-center space-y-4">
+                <h3 class="text-2xl font-semibold text-gray-900 dark:text-white">¿Listo para comenzar?</h3>
+                <p class="text-md text-gray-600 dark:text-gray-400 max-w-md mx-auto">
+                    Únete a ThinkHub y empieza a compartir tus pensamientos con el mundo.
+                </p>
+                <a th:href="@{/signup}" class="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-full font-semibold shadow transition duration-200">
+                    Crear cuenta
+                </a>
+            </div>
+        </div>
+    </section>
+</div>
+
+
+<footer th:replace="layout :: footer"></footer>
+<div th:replace="layout :: scripts"></div>
+
+</body>
+</html>
