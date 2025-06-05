@@ -37,6 +37,11 @@
                         <i data-feather="trash-2" class="mr-2"></i> Eliminar
                     </button>
                 </form>
+                <a th:href="@{'/post/' + ${post.id} + '/comentarios'}"
+                class="inline-flex items-center px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition">
+                <i data-feather="message-circle" class="mr-2"></i> Comentar
+             </a>
+             
             </div>
         </article>
     </section>

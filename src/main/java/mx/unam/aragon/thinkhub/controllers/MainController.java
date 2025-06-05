@@ -1,24 +1,33 @@
 package mx.unam.aragon.thinkhub.controllers;
 
 
-import mx.unam.aragon.thinkhub.entities.Post;
-import mx.unam.aragon.thinkhub.services.PostService;
+import java.time.LocalDateTime;
+
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.time.LocalDateTime;
-
+import mx.unam.aragon.thinkhub.entities.Comment;
+import mx.unam.aragon.thinkhub.entities.Post;
+import mx.unam.aragon.thinkhub.services.CommentService;
+import mx.unam.aragon.thinkhub.services.PostService;
 @Controller
 @RequestMapping
 public class MainController {
 
-    private final PostService postService;
+   
+   private final PostService postService;
+private final CommentService commentService; // <-- Asegúrate de agregar esto
 
-    public MainController(PostService postService) {
-        this.postService = postService;
-    }
+public MainController(PostService postService, CommentService commentService) {
+    this.postService = postService;
+    this.commentService = commentService; // <-- Inicialización aquí
+}
 
     @GetMapping
     public String index() {
@@ -87,6 +96,24 @@ public class MainController {
     }
 
     // -------------------------------------------------------------
+  @GetMapping("/post/{id}/comentarios")
+public String comentar(@PathVariable Long id, Model model) {
+    Post post = postService.getPostById(id);
+    model.addAttribute("post", post);
+    model.addAttribute("comment", new Comment()); // <-- Esto es clave
+    return "comentarios";
+}
+
+
+@PostMapping("/post/{id}/comentarios")
+public String guardarComentario(@PathVariable Long id, @ModelAttribute Comment comment) {
+    Post post = postService.getPostById(id);
+    comment.setPost(post);
+    comment.setCreatedAt(LocalDateTime.now()); // Asegura fecha creación
+    commentService.save(comment);
+    return "redirect:/post/" + id + "/comentarios";
+}
+
 
 
 }
